@@ -1,0 +1,209 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MyResume-LatexTemplate
+%% <https://github.com/Saranyan91/MyResume-LatexTemplate>
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Run in non-stop mode.
+\ifnum\TypesetInNonStopMode=1
+\nonstopmode
+\fi
+
+% Geometry package for page margins.
+\usepackage[
+left=0.30in,
+right=0.30in,
+top=0.45in,
+bottom=0.45in,
+nohead,
+includefoot]{geometry}
+
+% PDF settings and properties.
+\usepackage{hyperref}
+\usepackage{blindtext}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{relsize}
+% Long table for page layout.
+%\usepackage{longtable}
+
+% Hyphenation: Disabled.
+\usepackage[none]{hyphenat}
+% Parallel Columns
+\usepackage{paracol}
+\usepackage{array}
+% Colors.
+\usepackage[usenames]{color}
+\definecolor{MyDarkBlue}{RGB}{0,90,160}
+% {\color{MyDarkBlue}This text is dark blue}
+\usepackage{eso-pic,graphicx}
+% Current date and time.
+\usepackage[yyyymmdd,24hr]{datetime}
+\renewcommand{\dateseparator}{-}
+\settimeformat{xxivtime}
+% {\today}~{\currenttime}
+
+% Timestamp.
+\newcommand{\Timestamp}{{\yyyymmdddate\today}~{\currenttime}}
+
+% Abbreviations for months.
+\newcommand{\LongMonth}[1]{%
+\ifcase#1\relax
+\or January%
+\or February%
+\or March%
+\or April%
+\or May%
+\or June%
+\or July%
+\or August%
+\or September%
+\or October%
+\or November%
+\or December%
+\fi}
+\newcommand{\ShortMonth}[1]{%
+\ifcase#1\relax
+\or Jan%
+\or Feb%
+\or Mar%
+\or Apr%
+\or May%
+\or Jun%
+\or Jul%
+\or Aug%
+\or Sep%
+\or Oct%
+\or Nov%
+\or Dec%
+\fi}
+
+% Select datestamp format.
+\def\DatestampFormatSelection{2}
+
+% Datestamp format: {yyyy}{MM}{dd} ---> yyyy-MM-dd (e.g., 2010-12-31).
+\ifnum\DatestampFormatSelection=1
+\newcommand{\DatestampYMD}[3]{\mbox{#1-#2-#3}}
+\newcommand{\DatestampYM}[2]{\mbox{#1-#2}}
+\newcommand{\DatestampY}[1]{#1}
+\fi
+
+% Datestamp format: {yyyy}{MM}{dd} ---> MMM yyyy (e.g., Dec 2010).
+\ifnum\DatestampFormatSelection=2
+\newcommand{\DatestampYMD}[3]{\mbox{\ShortMonth{#2} #1}}
+\newcommand{\DatestampYM}[2]{\mbox{\ShortMonth{#2} #1}}
+\newcommand{\DatestampY}[1]{#1}
+\fi
+
+% Datestamp format: {yyyy}{MM}{dd} ---> MMMM yyyy (e.g., December 2010).
+\ifnum\DatestampFormatSelection=3
+\newcommand{\DatestampYMD}[3]{\mbox{\LongMonth{#2} #1}}
+\newcommand{\DatestampYM}[2]{\mbox{\LongMonth{#2} #1}}
+\newcommand{\DatestampY}[1]{#1}
+\fi
+
+% Datestamp format: {yyyy}{MM}{dd} ---> yyyy (e.g., 2010).
+\ifnum\DatestampFormatSelection=4
+\newcommand{\DatestampYMD}[3]{#1}
+\newcommand{\DatestampYM}[2]{#1}
+\newcommand{\DatestampY}[1]{#1}
+\fi
+
+% XeLaTeX packages.
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+
+% Font: Use "Tinos" as the main typeface (\textnormal{}, \normalfont).
+% The "Tinos" fonts are released under the Apache License Version 2.0,
+% and can be downloaded for free at <http://www.fontsquirrel.com/fonts/tinos>.
+% Symbol table: <http://www.fileformat.info/info/unicode/font/tinos/grid.htm>
+\setmainfont
+[Path=./Fonts/Tinos/,
+ItalicFont=Tinos-Italic,
+BoldFont=Tinos-Bold,
+BoldItalicFont=Tinos-BoldItalic]
+{Tinos-Regular.ttf}
+
+% Secondary font: "GNU FreeFont".
+% The "GNU FreeFont" fonts are released under the
+% GNU General Public License Version 3, and can be downloaded
+% for free at <https://savannah.gnu.org/projects/freefont/>.
+\newcommand{\UseSecondaryFont}{\fontspec
+[Path=./Fonts/GNUFreeFont/,
+ItalicFont=FreeSerifItalic,
+BoldFont=FreeSerifBold,
+BoldItalicFont=FreeSerifBoldItalic]
+{FreeSerif.otf}}
+
+% Sans-serif font: Changed to "Tinos".
+\renewcommand{\sffamily}{\rmfamily}
+
+% Typewriter (monospace) font: Changed to "Tinos".
+\renewcommand{\ttfamily}{\rmfamily}
+
+% Small caps font: Changed to "Tinos".
+\renewcommand{\scshape}{\rmfamily}
+%\renewcommand{\textsc}[1]{\textbf{\MakeUppercase{#1}}}
+
+% Font styles.
+\newcommand{\UseHeadingFont}{\normalfont}
+\newcommand{\UseHeaderFooterFont}{\UseHeadingFont\fontsize{10.2pt}{11.5pt}\selectfont}
+\newcommand{\UseNoteFont}{\UseHeadingFont\fontsize{10pt}{11.6pt}\selectfont}
+\newcommand{\UseTitleFont}{\UseHeadingFont\fontsize{30pt}{35.6pt}\selectfont\bfseries}
+\newcommand{\UseSubTitleFont}{\normalfont\fontsize{10.6pt}{12.3pt}\selectfont}
+\newcommand{\UseSectionFont}{\UseHeadingFont\fontsize{12pt}{14pt}\selectfont\bfseries}
+\newcommand{\UseSubSectionFont}{\UseHeadingFont\fontsize{10.6pt}{12.3pt}\selectfont\bfseries}
+\newcommand{\UseDetailFont}{\normalfont\fontsize{10.6pt}{12.3pt}\selectfont}
+
+% Symbols (unicode).
+\newcommand{\BulletSymbol}{{\normalfont\fontsize{8.5}{9.8}\selectfont\raisebox{0.17em}{\char"25A0}}}
+\newcommand{\SubBulletSymbol}{{\normalfont\fontsize{8}{9.2}\selectfont\raisebox{0.17em}{\char"25CF}}}
+\newcommand{\TildeSymbol}{{\normalfont\char"007E}}
+
+% Headers and footers: Blank header, page number in footer.
+\ifnum\TypesetInDraftMode=0
+\newcommand{\HeaderText}{}
+\newcommand{\FooterText}{\UseHeaderFooterFont\hfill%
+{Page}~{\thepage}~of~\pageref{LastPage}%
+\hfill}
+\else
+\newcommand{\HeaderText}{}
+\newcommand{\FooterText}{\UseHeaderFooterFont%
+\hphantom{DRAFT~\Timestamp}\hfill%
+{Page}~{\thepage}~of~\pageref{LastPage}%
+\hfill{\color{red}DRAFT~\Timestamp}}
+\fi
+
+\makeatletter
+\def\ps@plain{%
+\def\@oddhead{\HeaderText}%
+\def\@evenhead{\HeaderText}%
+\def\@oddfoot{\FooterText}%
+\def\@evenfoot{\FooterText}}
+\makeatother
+
+\pagestyle{plain}
+
+% Paragraph style.
+\setlength{\parindent}{0in} % No indentation at the beginning of each paragraph.
+\setlength{\parskip}{0in} % No vertical space between paragraphs.
+
+% Macro: hide.
+\newcommand{\hide}[1]{}
+
+% CV Info (to be customized).
+\newcommand{\CVAuthor}{Saranyan Senthivel}
+\newcommand{\CVTitle}{Saranyan Senthivel's CV}
+\newcommand{\CVNote}{Saranyan Senthivel}
+\newcommand{\CVWebpage}{}
+
+% Shorthand.
+\newcommand{\CodeCommand}[1]{\mbox{\textbf{\textbackslash{#1}}}}
+
+%Title Formatting
+\title{\vspace{-5ex}\MakeUppercase{\textbf{Saranyan Senthivel(SS)}}}
+\date{\vspace{-10ex}}
+
+
